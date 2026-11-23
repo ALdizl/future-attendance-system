@@ -1,0 +1,19 @@
+النشر على PythonAnywhere (مجاني، ومعاه https والبيانات بتفضل محفوظة)
+
+1) اعمل حساب على pythonanywhere.com (Beginner / مجاني)، واختار اسم مستخدم قصير (هيبقى رابط موقعك: اسمك.pythonanywhere.com)
+2) تبويب Files: ارفع ملف attendance.zip في /home/اسمك/ ، وبعدين من تبويب Consoles افتح Bash واكتب:
+       unzip attendance.zip -d attendance
+   (لو طلع فولدر attendance جواه attendance تاني، انقل اللي جوه لبرّه بحيث app.py يبقى في /home/اسمك/attendance/app.py)
+3) في نفس الـ Bash:
+       cd ~/attendance
+       pip install --user -r requirements.txt
+       python setup_production.py        (بيطلب منك كلمة سر قوية للإدارة)
+       python load_timetable.py          (الملف جوه الـ zip، بيحمّل الجدول والدكاترة)
+4) تبويب Web: Add a new web app > Manual configuration > اختار نفس إصدار بايثون اللي شغّلت بيه pip (3.10 مثلًا).
+5) في Web: Source code و Working directory = /home/اسمك/attendance
+6) افتح ملف الـ WSGI (لينك في نفس التبويب) وامسح كل اللي فيه وحط محتوى wsgi_pythonanywhere.py مع تغيير YOURNAME لاسمك.
+7) اضغط Reload. افتح https://اسمك.pythonanywhere.com
+8) ادخل admin > الإعدادات: اضغط «خُد موقعي الحالي» وإنت جوه القاعة، وفعّل التحقق من الموقع (الـ GPS هيشتغل لأن الرابط https).
+
+مهم: الحساب المجاني بتاع PythonAnywhere بينتهي بعد شهر لو ماجددتوش: من تبويب Web اضغط الزرار الأخضر
+(Run until 1 month from today) مرة كل شهر. وفيه حد يومي للمعالجة (CPU) في المجاني، فلو الاستخدام كبر ترقّي للخطة المدفوعة.
